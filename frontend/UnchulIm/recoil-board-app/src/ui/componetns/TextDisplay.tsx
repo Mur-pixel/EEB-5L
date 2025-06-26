@@ -1,6 +1,6 @@
 import React from 'react';
 import {useRecoilValue } from 'recoil';
-import {textState} from "../../atoms.ts";
+import { textState } from "../../atoms/textState.ts";
 
 const TextDisplay = () => {
     const text = useRecoilValue (textState)

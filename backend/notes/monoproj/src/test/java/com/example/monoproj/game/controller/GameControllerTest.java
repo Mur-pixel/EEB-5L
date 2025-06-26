@@ -2,6 +2,7 @@ package com.example.monoproj.game.controller;
 
 import com.example.monoproj.game.service.GameService;
 
+import com.example.monoproj.redis_cache.service.RedisCacheService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class GameControllerTest {
     @MockitoBean
     private GameService gameService;
 
+    @MockitoBean
+    private RedisCacheService redisCacheService;
+
     // 실제로 게임을 시작한다고 하면 Controller -> Service -> Repository
     // 위 흐름으로 작업이 진행 될 것이고
     // Game 시작이란 뜻은 결론적으로 Game Entity를 생성한 것이 될 것임.
@@ -31,12 +35,19 @@ public class GameControllerTest {
     // 시작과 끝이 있기 때문에 여러 게임이 생성 될 수 있음
     @Test
     void testStartGame() throws Exception {
-        // when() 을 통해서 무엇을 할 때
-        // thenReturn() 으로 어떤 결과를 고정시켜라
-        when(gameService.start()).thenReturn(1L);
+        // given
+        String token = "mock.jwt.token";
+        Long expectedAccountId = 1L;
+        Long expectedGameId = 1L;
 
-        mockMvc.perform(get("/game/start"))
+        // JWT를 파싱하여 accountId를 추출하는 필터가 있다면,
+        // 여기서는 controller 단위만 검증하므로 Mock 처리 가정
+        when(redisCacheService.getValueByKey(token)).thenReturn(expectedAccountId);
+        when(gameService.start(expectedAccountId)).thenReturn(expectedGameId);
+
+        mockMvc.perform(get("/game/start")
+                        .header("Authorization", "Bearer " + token))
                 .andExpect(status().isOk())
-                .andExpect(content().string("1"));
+                .andExpect(content().string(String.valueOf(expectedGameId)));
     }
 }

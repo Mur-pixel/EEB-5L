@@ -1,9 +1,7 @@
 package com.example.monoproj.dice.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.monoproj.game.entity.Game;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -17,6 +15,10 @@ public class Dice {
 
     private Integer number;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_id")
+    private Game game;
+
     public Dice(Integer number) {
         this.number = number;
     }
@@ -25,5 +27,9 @@ public class Dice {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }

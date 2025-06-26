@@ -1,6 +1,6 @@
 import * as path from "node:path";
 import { defineConfig } from "@rspack/cli";
-import { rspack } from "@rspack/core";
+import {DefinePlugin, rspack} from "@rspack/core";
 import { ModuleFederationPlugin } from "@module-federation/enhanced/rspack";
 
 const sveltePreprocess = require('svelte-preprocess');
@@ -20,6 +20,13 @@ export default defineConfig({
   resolve: {
     extensions: ["...", ".ts", ".tsx", ".jsx"],
   },
+  // resolve: {
+  //   extensions: ["...", ".ts", ".tsx", ".jsx", ".svelte"], // .svelte도 추가하는 게 좋습니다
+  //   conditionNames: ["svelte", "import", "require", "default"], // 여기에 'svelte' 꼭 포함
+  //   alias: {
+  //     svelte: require.resolve("svelte"),
+  //   }
+  // },
 
   devServer: {
     port: 4000,
@@ -118,6 +125,9 @@ export default defineConfig({
   plugins: [
     new rspack.HtmlRspackPlugin({
       template: "./index.html",
+    }),
+    new DefinePlugin({
+      "import.meta.env.VITE_API_URL": JSON.stringify(process.env.VITE_API_URL),
     }),
     new ModuleFederationPlugin(mfConfig),
   ].filter(Boolean),

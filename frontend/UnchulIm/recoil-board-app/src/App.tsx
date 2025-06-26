@@ -6,6 +6,7 @@ import { RecoilRoot } from 'recoil'
 import "./index.css";
 import TextInput from "./ui/componetns/TextInput.tsx";
 import TextDisplay from "./ui/componetns/TextDisplay.tsx";
+import PostList from "./ui/componetns/PostList.tsx";
 
 const App = () => (
     <RecoilRoot>
@@ -17,6 +18,7 @@ const App = () => (
                 <TextDisplay/>
             </div>
         </div>
+        <PostList/>
     </RecoilRoot>
 );
 
