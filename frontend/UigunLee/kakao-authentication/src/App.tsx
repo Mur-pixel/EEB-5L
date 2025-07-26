@@ -2,12 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import "./index.css";
+import KakaoAuthenticationRouter from "./router/KakaoAuthenticationRouter.tsx";
 
-const App = () => (
-    <div className="mt-10 text-3xl mx-auto max-w-6xl">
-        <div>Name: navigation-bar-app</div>
-        <div>Framework: react-18</div>
-    </div>
-);
+const App: React.FC = () => {
+    console.log("✅ AuthenticationApp 렌더링됨");
 
-export default App
+    return (
+        <KakaoAuthenticationRouter/>
+    );
+}
+
+export default App;

@@ -1,9 +1,9 @@
 .container {
-    max-width: 900px; /*최대 너비 제한 (반응형에 적합) */
-    margin: 0 auto;/*margin: 0 auto의 경우 위쪽과 아래쪽은 0이고, 좌우는 자동 정렬을 하겠음을 의미합니다. */
-    padding: 20px;/*20px 의 경우 안쪽 여백을 20 픽셀 배치하여 실제 내용이 너무 붙지 않도록 만듭니다*/
-    font-family: Arial, sans-serif;/*font-family를 통해 Arial, 만약 없다면 sans-serif를 사용합니다 */
-    text-align: center;/*text-align을 통해 글자를 가운데 정렬합니다*/
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
 }
 
 h1 {
@@ -56,53 +56,58 @@ form {
     flex-direction: column;
 }
 
-label{
+label {
     margin: 10px 0 5px;
-    color:#444;
+    color: #444;
     font-weight: 500;
 }
+
 input[type="text"],
-input[type="email"]{
+input[type="email"] {
     padding: 10px 12px;
-    boarder:10px solid #ccc;
-    boarder-radius:6px;
-    font-size: 1rem;
-    transition: boarder-color 0.3s;
-}
-input[type="text"]:focus,
-input[type="email"]:focus{
-    boarder-color:#4a90e2;
-    outline:none;
-}
-.custom_button{
-    margin-top: 20px;
-    padding:12px;
-    background-color: #4a90e2;
-    color:white;
-    font-weight: bold;
-    border:none;
+    border: 1px solid #ccc;
     border-radius: 6px;
-    cursor:pointer;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+.custom-button {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #4a90e2;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
     transition: background-color 0.3s;
 }
-.custom-button:hover{
+
+.custom-button:hover {
     background-color: #357ab8;
-
-}
-h1:after{
-    content:"🌟";
-    color:gold;
 }
 
-.box:hover{
+h1::after {
+    content: " ✨";
+    color: gold;
+}
+
+.box:hover {
     transition: background-color 0.5s ease-in-out;
-    background-color:lightblue;
+    background-color: lightblue;
 }
 
 @keyframes example {
-    form{background-color: red;}
-    to{background-color: yellow;}
+    from { background-color: red; }
+    to { background-color: yellow; }
 }
+
 .animated-box {
     width: 100px;
     height: 100px;

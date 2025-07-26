@@ -42,10 +42,8 @@ const VueBoardAppWrapper = ({ eventBus }) => {
     }, [location]);
 
     return (
-        <div>
-            <div>
-                <div style={{ position: 'relative' }} ref={vueModuleRef}/>
-            </div>
+        <div style={{ height: 'calc(100vh - 64px)', overflow: 'hidden' }}>
+            <div ref={vueModuleRef} style={{ height: '100%' }} />
         </div>
     )
 };

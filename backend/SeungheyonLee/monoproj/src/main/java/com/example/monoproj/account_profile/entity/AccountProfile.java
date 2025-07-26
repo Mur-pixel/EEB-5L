@@ -20,6 +20,10 @@ public class AccountProfile {
     private String email;
 
     @OneToOne(fetch = FetchType.LAZY)
+    // 이 엔티티의 외래키 컬럼을 지정.
+    // 데이터베이스 테이블의 account_id 컬럼과 매핑.
+    // 참조 대상 테이블의 id 컬럼을 외래키로 사용.
+    // null 값 저장을 허용하지 않음.
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
     private Account account;
 
@@ -42,6 +46,9 @@ public class AccountProfile {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public void setTermsAccepted(boolean agreed) {
     }
 }
 

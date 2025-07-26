@@ -1,17 +1,20 @@
 export const mfConfig = {
   name: "html_container",
   remotes: {
-    htmlCssTestApp: "htmlCssTestApp@http://localhost:3001/remoteEntry.js",
-    javascriptTestApp: "javascriptTestApp@http://localhost:3002/remoteEntry.js",
-    kakaoAuthenticationApp: "kakaoAuthenticationApp@http://localhost:3003/remoteEntry.js",
+    // htmlCssTestApp: "htmlCssTestApp@http://localhost:3001/remoteEntry.js",
+    // javascriptTestApp: "javascriptTestApp@http://localhost:3002/remoteEntry.js",
+    // kakaoAuthenticationApp: "kakaoAuthenticationApp@http://localhost:3003/remoteEntry.js",
     // vuetifyTailwindBoardApp: "vuetifyTailwindBoardApp@http://localhost:3004/remoteEntry.js",
     navigationBarApp: "navigationBarApp@http://localhost:3005/remoteEntry.js",
-    reactTestApp: "reactTestApp@http://localhost:3006/remoteEntry.js",
-    googleAuthenticationApp: "googleAuthenticationApp@http://localhost:3100/remoteEntry.js",
-    recoilBoardApp: "recoilBoardApp@http://localhost:3101/remoteEntry.js",
-    // vueBoardApp: "vueBoardApp@http://localhost:3200/remoteEntry.js"
+    // reactTestApp: "reactTestApp@http://localhost:3006/remoteEntry.js",
+    // googleAuthenticationApp: "googleAuthenticationApp@http://localhost:3100/remoteEntry.js",
+    // recoilBoardApp: "recoilBoardApp@http://localhost:3101/remoteEntry.js",
     vueBoardApp: `vueBoardApp@${process.env.VUE_BOARD_APP}/remoteEntry.js`,
-    diceGameApp: "diceGameApp@http://localhost:4000/remoteEntry.js"
+    diceGameApp: "diceGameApp@http://localhost:4000/remoteEntry.js",
+    authenticationApp: "authenticationApp@http://localhost:4001/remoteEntry.js",
+    // vtestApp: `vtestApp@${process.env.VTEST_APP}/remoteEntry.js`,
+    gameChipApp: `gameChipApp@${process.env.VUE_GAME_CHIP_APP}/remoteEntry.js`,
+    cartApp: "cartApp@http://localhost:4322/remoteEntry.js",
   },
   shared: {
     react: { singleton: true, requiredVersion: "^18.2.0" },

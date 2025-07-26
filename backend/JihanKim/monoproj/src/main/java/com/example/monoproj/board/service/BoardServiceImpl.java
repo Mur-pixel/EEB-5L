@@ -1,10 +1,14 @@
 package com.example.monoproj.board.service;
 
+import com.example.monoproj.account.entity.Account;
 import com.example.monoproj.account.repository.AccountRepository;
+import com.example.monoproj.account_profile.entity.AccountProfile;
 import com.example.monoproj.account_profile.repository.AccountProfileRepository;
 import com.example.monoproj.board.entity.Board;
 import com.example.monoproj.board.repository.BoardRepository;
+import com.example.monoproj.board.service.request.CreateBoardRequest;
 import com.example.monoproj.board.service.request.ListBoardRequest;
+import com.example.monoproj.board.service.response.CreateBoardResponse;
 import com.example.monoproj.board.service.response.ListBoardResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,5 +35,23 @@ public class BoardServiceImpl implements BoardService {
 
         // ListBoardResponse 객체로 변환하여 반환
         return new ListBoardResponse(boardPage.getContent(), boardPage.getTotalElements(), boardPage.getTotalPages());
+    }
+
+    @Override
+    public CreateBoardResponse register(CreateBoardRequest createBoardRequest) {
+        log.info("accountId: {}", createBoardRequest.getAccountId());
+
+        Account account = accountRepository.findById(createBoardRequest.getAccountId())
+                .orElseThrow(() -> new RuntimeException("Account 존재하지 않음"));
+
+        log.info("account: {}", account);
+
+        AccountProfile accountProfile = accountProfileRepository.findByAccount(account)
+                .orElseThrow(() -> new RuntimeException("AccountProfile not found"));
+
+        log.info("account profile: {}", accountProfile);
+
+        Board board = boardRepository.save(createBoardRequest.toBoard(accountProfile));
+        return CreateBoardResponse.from(board);
     }
 }

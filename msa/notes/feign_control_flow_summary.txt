@@ -1,0 +1,64 @@
+* 현재 서비스 구성은 아래와 같음
+
+- demo(gateway)
+- simple
+- discovery
+- book
+- config-server (옵션)
+
+현재 simple과 book이 FeignClient 형식을 사용하고 있음.
+이 작업의 동작 흐름을 분석하는 형식이 있을 것이고
+실제 구현 관점에서 작업 흐름을 정리하는 형식이 있을 것임.
+
+* 작업 흐름
+
+1. 먼저 Book 서비스를 구성 (register, findByXXX, findAll, deleteByXXX)
+2. 이전에 RELV에서 만들 때는 Response 타입을 별도로 지정하지 않았지만
+   MSA 코드를 작성하기 위해 RegisterDomainRequest, FindDomainRequest와 같은 형식을 구성해야 합니다.
+3. 다음으로 Feign Client 파트를 작성합니다.
+   케이스가 있다면 Board Domain을 예로 들 수 있습니다.
+   Account 혹은 User Domain이 함께 동작하는 상황입니다.
+   게시물을 등록 할 때 작성자 정보를 가져와야 합니다.
+   실제로 Board Domain의 register 작업이지만 
+   Feign Client 방식을 사용하여 User Domain을 획득해야 합니다.
+
+   현재 케이스에서는 Book이 Board의 역할입니다.
+   그리고 BookCompany가 Account의 역할이 될 것입니다.
+
+4. 위 케이스에서는 결국 회사 번호 
+   혹은 회사를 식별할 수 있는 무언가를 가지고 검색을 요청하게 될 것입니다.
+   결론적으로 RELV에서 작업했던 findByXXX 형태를 요청하게 됩니다.
+
+5. Feign 요청으로 받은 사용자 정보 혹은 회사 정보를 Board 혹은 Book에 기록해주면 됩니다.
+   Board 입장에서는 사용자 정보가 '글 작성자'
+   Book 입장에서는 회사 정보가 '출판사' 가 될 것입니다.
+
+
+
+* 코드 동작 흐름 (분석 관점)
+
+분석 관점에서는 simple과 book 관점으로 보겠습니다.
+
+1. 일단은 누가 feign을 호출하지? <- simple 서비스
+    그렇다면 simple 서비스 내에 client 패키지가 있겠구나
+   그래서 client 패키지 내에 BookClient라는 Book Domain의 인터페이스가 존재함.
+   여기서 다른 Domain에 요청을 하는 것들이 있다면
+   DomainClient 형태로 여러 가지가 구성될 수 있음.
+
+2. DomainClient를 살펴보면
+   인터페이스 특성상 프로토타입만 존재하는 것을 확인할 수 있음.
+   여기서 Get 요청인지 Post 요청인지도 지정이 되고 있었음.
+   실제로 특정 Domain의 Controller URI 정보와 일치하는 경로로 맵핑되어 있는 것도 볼 수 있었음.
+   
+3. 그리고 실제 DomainClient를 보면 Return 타입(Response - 응답) 과
+   Request - 요청에 대한 정보를 확인 할 수 있습니다.
+   요청하는 쪽이나 받는 쪽이나 모두 특정 정보를 공통되게 활용할 수 밖에 없음.
+   그러므로 Feign을 사용하는 쪽이나 Feign을 당하는 쪽이나 모두 같은 Request와 Response가 필요함.
+
+4. 실제 요청(Request) 타입에 맞춰서 Feign 요청을 했고
+   응답(Response) 타입에 맞게 응답을 받음을 확인
+
+
+
+
+

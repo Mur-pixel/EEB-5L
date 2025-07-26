@@ -13,3 +13,9 @@ const App: React.FC = () => {
 }
 
 export default App;
+
+// npm install @emotion/react@^11.14.0 \
+//             @emotion/styled@^11.14.0 \
+//             @mui/icons-material@^7.0.1 \
+//             @mui/material@^7.0.1 \
+//             react-router-dom@^6.30.0

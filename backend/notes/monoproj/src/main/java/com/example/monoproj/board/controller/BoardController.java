@@ -51,7 +51,7 @@ public class BoardController {
 
         String token = authorizationHeader.replace("Bearer ", "").trim();
 
-        Long accountId = redisCacheService.getValueByKey(token);
+        Long accountId = redisCacheService.getValueByKey(token, Long.class);
         log.info("accountId -> {}", accountId);
 
         CreateBoardResponse response = boardService.register(createBoardRequestForm.toCreateBoardRequest(accountId));
@@ -74,7 +74,7 @@ public class BoardController {
         log.info("modifyBoard(): {}, boardId: {}", updateBoardRequestForm, boardId);
 
         String token = authorizationHeader.replace("Bearer ", "").trim();
-        Long accountId = redisCacheService.getValueByKey(token);
+        Long accountId = redisCacheService.getValueByKey(token, Long.class);
         log.info("accountId -> {}", accountId);
 
         UpdateBoardResponse response = boardService.update(
@@ -86,4 +86,17 @@ public class BoardController {
         return UpdateBoardResponseForm.from(response);
     }
 
+    @DeleteMapping("/delete/{boardId}")
+    public void deleteBoard(
+            @PathVariable("boardId") Long boardId,
+            @RequestHeader("Authorization") String authorizationHeader) {
+
+        log.info("deleteBoard(): {}", boardId);
+
+        String token = authorizationHeader.replace("Bearer ", "").trim();
+        Long accountId = redisCacheService.getValueByKey(token, Long.class);
+        log.info("accountId -> {}", accountId);
+
+        boardService.delete(boardId, accountId);
+    }
 }

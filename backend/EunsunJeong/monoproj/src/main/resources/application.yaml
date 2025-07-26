@@ -33,10 +33,6 @@ cors:
   allow:
     origins: ${CORS_ALLOWED_ORIGINS}
 
-frontend:
-  authentication:
-    origins: ${FRONTEND_AUTHENTICATION_ORIGINS}
-
 kakao:
   login-url: ${KAKAO_LOGIN_URL}
   client-id: ${KAKAO_CLIENT_ID}

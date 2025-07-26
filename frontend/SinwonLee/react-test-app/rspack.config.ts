@@ -1,11 +1,11 @@
 import * as path from "node:path";
-import {defineConfig} from "@rspack/cli";
-import {rspack} from "@rspack/core";
+import { defineConfig } from "@rspack/cli";
+import { rspack } from "@rspack/core";
 import * as RefreshPlugin from "@rspack/plugin-react-refresh";
-import {ModuleFederationPlugin} from "@module-federation/enhanced/rspack";
+import { ModuleFederationPlugin } from "@module-federation/enhanced/rspack";
 
 
-import {mfConfig} from "./module-federation.config";
+import { mfConfig } from "./module-federation.config";
 
 const isDev = process.env.NODE_ENV === "development";
 

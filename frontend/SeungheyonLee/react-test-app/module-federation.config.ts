@@ -11,5 +11,4 @@ export const mfConfig = {
     "@mui/icons-material": { singleton: true, requiredVersion: "^7.0.1" },
     "react-router-dom": { singleton: true, requiredVersion: "^6.30.0" },
   },
-  dts: false,
 };

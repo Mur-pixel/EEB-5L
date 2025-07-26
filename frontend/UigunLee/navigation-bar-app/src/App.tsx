@@ -7,6 +7,7 @@ import CodeIcon from "@mui/icons-material/Code";
 import JavascriptIcon from "@mui/icons-material/Javascript";
 import ForumIcon from "@mui/icons-material/Forum";
 import AddReactionIcon from '@mui/icons-material/AddReaction';
+import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 
 const App: React.FC = () => {
     return (
@@ -42,16 +43,24 @@ const App: React.FC = () => {
                 <Button
                     color="inherit"
                     component={Link}
-                    to="/board/list"
-                    startIcon={<ForumIcon />}
+                    to="/practice-app"
+                    startIcon={<AddReactionIcon />}
                 >
                     Practice App
                 </Button>
                 <Button
                     color="inherit"
                     component={Link}
-                    to="/practice-app"
-                    startIcon={<AddReactionIcon />}
+                    to="/react-test"
+                    startIcon={<BeachAccessIcon />}
+                >
+                    React 실험
+                </Button>
+                <Button
+                    color="inherit"
+                    component={Link}
+                    to="/vue-board"
+                    startIcon={<ForumIcon />}
                 >
                     게시판
                 </Button>

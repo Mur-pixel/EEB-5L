@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: book
+
+  datasource:
+    url: jdbc:h2:mem:bookdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 12346
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9876/eureka
+
+logging:
+  level:
+    com.example.simple.client: DEBUG
+    feign: DEBUG

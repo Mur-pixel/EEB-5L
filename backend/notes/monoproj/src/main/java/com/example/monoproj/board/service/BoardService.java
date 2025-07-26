@@ -13,4 +13,5 @@ public interface BoardService {
     CreateBoardResponse register(CreateBoardRequest createBoardRequest);
     ReadBoardResponse read(Long boardId);
     UpdateBoardResponse update(Long boardId, Long accountId, UpdateBoardRequest updateBoardRequest);
+    void delete(Long boardId, Long accountId);
 }

@@ -1,0 +1,13 @@
+server:
+  port: 8800
+
+spring:
+  application:
+    name: config-server
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///Users/leegun/Documents/GitHub/EEB-5L/msa/UigunLee/config-repo
+          default-label: main

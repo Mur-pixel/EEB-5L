@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: demo
+
+  cloud:
+    gateway:
+      routes:
+        - id: simple-service
+          uri: lb://SIMPLE
+          predicates:
+            - Path=/api/simple/**
+          filters:
+            - StripPrefix=2
+
+        - id: book-service
+          uri: lb://BOOK
+          predicates:
+            - Path=/api/book/**
+          filters:
+            - StripPrefix=1
+
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+  logging:
+    level:
+      org.springframework.cloud.gateway: DEBUG
+
+server:
+  port: 7890
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9876/eureka

@@ -29,6 +29,7 @@
     "@module-federation/enhanced": "^0.8.9",
     "@mui/icons-material": "^7.0.1",
     "@mui/material": "^7.0.1",
+    "mitt": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.30.0"

@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: book
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/msa_db?serverTimezone=UTC&characterEncoding=UTF-8
+    username: eddi
+    password: eddi@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update      # none, validate, update, create, create-drop ??? ??
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+server:
+  port: 12346
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9876/eureka

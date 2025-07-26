@@ -52,7 +52,7 @@ public class DiceControllerTest {
         String token = "Bearer mock-token";
         Long mockAccountId = 123L;
 
-        when(redisCacheService.getValueByKey("mock-token")).thenReturn(mockAccountId);
+        when(redisCacheService.getValueByKey("mock-token", Long.class)).thenReturn(mockAccountId);
         when(diceService.saveRollResult(any(), any(), any())).thenReturn(true);
 
         mockMvc.perform(post("/dice/save-roll-result")

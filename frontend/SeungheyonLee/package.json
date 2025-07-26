@@ -1,23 +1,24 @@
 {
-  "name": "root",
+  "name": "notes",
   "private": true,
   "workspaces": [
     "html-container",
-    "html-css-test-app",
-    "javascript-test-app",
     "kakao-authentication",
-    "google-authentication",
     "navigation-bar-app",
-    "practice-app",
-    "react-test-app",
-    "recoil-board-app"
+    "google-authentication",
+    "dice-game-app",
+    "vue-board-app2",
+    "authentication-app"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap",
     "start": "lerna run start --parallel"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
     "lerna": "^8.2.1"
+  },
+  "dependencies": {
+    "cannon-es": "^0.20.0",
+    "three": "^0.177.0"
   }
 }

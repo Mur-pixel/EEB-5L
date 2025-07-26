@@ -34,28 +34,6 @@ const App: React.FC = () => {
                         sx={{minWidth: 'auto', padding: '6px 8px', margin: 0}}
                         color="inherit"
                         component={Link}
-                        to="/html-css-test"
-                        startIcon={<CodeIcon/>}
-                    >
-                        <TextBox>
-                            HTML/CSS Test
-                        </TextBox>
-                    </Button>
-                    <Button
-                        sx={{minWidth: 'auto', padding: '6px 8px', margin: 0}}
-                        color="inherit"
-                        component={Link}
-                        to="/js-test"
-                        startIcon={<JavascriptIcon/>}
-                    >
-                        <TextBox>
-                            Javascript Test
-                        </TextBox>
-                    </Button>
-                    <Button
-                        sx={{minWidth: 'auto', padding: '6px 8px', margin: 0}}
-                        color="inherit"
-                        component={Link}
                         to="/board/list"
                         startIcon={<ForumIcon/>}
                     >
@@ -67,33 +45,11 @@ const App: React.FC = () => {
                         sx={{minWidth: 'auto', padding: '6px 8px', margin: 0}}
                         color="inherit"
                         component={Link}
-                        to="/react-test"
-                        startIcon={<SportsGymnasticsIcon/>}
-                    >
-                        <TextBox>
-                            React 실험
-                        </TextBox>
-                    </Button>
-                    <Button
-                        sx={{minWidth: 'auto', padding: '6px 8px', margin: 0}}
-                        color="inherit"
-                        component={Link}
                         to="/practice"
                         startIcon={<ChecklistOutlinedIcon/>}
                     >
                         <TextBox>
                             Practice
-                        </TextBox>
-                    </Button>
-                    <Button
-                        sx={{minWidth: 'auto', padding: '6px 8px', margin: 0}}
-                        color="inherit"
-                        component={Link}
-                        to="/recoil-board"
-                        startIcon={<ChecklistOutlinedIcon/>}
-                    >
-                        <TextBox>
-                            recoil
                         </TextBox>
                     </Button>
                     <Button

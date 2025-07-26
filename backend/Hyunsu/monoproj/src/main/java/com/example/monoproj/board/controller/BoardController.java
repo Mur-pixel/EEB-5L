@@ -7,14 +7,12 @@ import com.example.monoproj.board.controller.response_form.CreateBoardResponseFo
 import com.example.monoproj.board.controller.response_form.ListBoardResponseForm;
 import com.example.monoproj.board.controller.response_form.ReadBoardResponseForm;
 import com.example.monoproj.board.controller.response_form.UpdateBoardResponseForm;
-
 import com.example.monoproj.board.service.BoardService;
 import com.example.monoproj.board.service.response.CreateBoardResponse;
 import com.example.monoproj.board.service.response.ListBoardResponse;
 import com.example.monoproj.board.service.response.ReadBoardResponse;
 import com.example.monoproj.board.service.response.UpdateBoardResponse;
 import com.example.monoproj.redis_cache.service.RedisCacheService;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

@@ -23,7 +23,7 @@ public class GameController {
         log.info("authorizationHeader -> {}", authorizationHeader);
 
         String token = authorizationHeader.replace("Bearer ", "").trim();
-        Long accountId = redisCacheService.getValueByKey(token);
+        Long accountId = redisCacheService.getValueByKey(token, Long.class);
         log.info("accountId -> {}", accountId);
 
         return gameService.start(accountId);

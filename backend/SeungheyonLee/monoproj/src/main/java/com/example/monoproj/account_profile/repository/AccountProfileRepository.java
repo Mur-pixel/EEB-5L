@@ -13,4 +13,15 @@ public interface AccountProfileRepository extends JpaRepository<AccountProfile, 
 
     @Query("SELECT ap FROM AccountProfile ap JOIN FETCH ap.account WHERE ap.email = :email")
     Optional<AccountProfile> findWithAccountByEmail(@Param("email") String email);
+    //JPQL
+    @Query("""
+        SELECT ap
+          FROM AccountProfile ap
+          JOIN FETCH ap.account
+         WHERE ap.account.id = :accountId
+""")
+    //JPQL은 데이터베이스 칼럼명이 아니라 엔티티의 “속성 이름” 으로 매핑
+    Optional<AccountProfile> findWithAccountByAccountId(@Param("accountId") Long accountId);
+
+
 }

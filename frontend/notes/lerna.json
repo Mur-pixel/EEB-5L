@@ -3,15 +3,11 @@
   "version": "independent",
   "packages": [
     "html-container",
-    "html-css-test-app",
-    "javascript-test-app",
-    "kakao-authentication",
     "navigation-bar-app",
-    "vuetify-tailwind-board-app",
-    "react-test-app",
-    "google-authentication",
-    "recoil-board-app",
     "vue-board-app",
-    "dice-game-app"
+    "dice-game-app",
+    "authentication-app",
+    "game-chip-app",
+    "cart-app"
   ]
 }

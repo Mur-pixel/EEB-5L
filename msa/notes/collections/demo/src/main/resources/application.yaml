@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: demo
+
+  cloud:
+    gateway:
+      routes:
+        - id: simple-service
+          # uri: http://localhost:12345
+          # 아래와 같이 구성되는 이유는
+          # eureka에서 서비스 이름으로 찾기 때문입니다.
+          uri: lb://SIMPLE
+          predicates:
+            - Path=/api/simple/**
+          filters:
+            - StripPrefix=2
+            - SetRequestHeader=Accept, application/json
+
+        - id: book-service
+          uri: lb://BOOK
+          predicates:
+            - Path=/api/book/**
+          filters:
+            - StripPrefix=1
+            - SetRequestHeader=Accept, application/json
+
+        - id: account-service
+          uri: lb://ACCOUNT
+          predicates:
+            - Path=/api/account/**
+          filters:
+            - StripPrefix=1
+            - SetRequestHeader=Accept, application/json
+
+      # Eureka에 등록된 모든 서비스들을 자동으로 라우팅 경로로 잡음
+      # 이를 통해서 위의 lb://SIMPLE 등으로 경로를 인식할 수 있음
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+
+server:
+  port: 7890
+
+# Eureka Client가 Server에 등록하기 위한 설정
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9876/eureka

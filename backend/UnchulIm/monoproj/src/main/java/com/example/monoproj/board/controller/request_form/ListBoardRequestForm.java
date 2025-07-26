@@ -11,7 +11,6 @@ import lombok.ToString;
 public class ListBoardRequestForm {
     final private int page;
     final private int perPage;
-    final private String userToken;
 
     public ListBoardRequest toListBoardRequest() {
         return new ListBoardRequest(page, perPage);

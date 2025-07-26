@@ -5,15 +5,8 @@ import KakaoAuthenticationCallback from "../redirection/KakaoAuthenticationCallb
 
 const KakaoAuthenticationRouter = () => {
     return (
-        //suspense의 경우 로딩이 느리게 될 경우 멈춰 있는것보다는
-        //특정 상황을 표현해주거나
-        //메시지를 출력해서 사이트가 멈추지 않았음을 알려주려고 합니다.
-        //fallback에 <div>블록을 배치해서
-        //'로딩중...'메시지가 출력되게 만들었습니다
         <Suspense fallback={<div>로딩중 ........</div>}>
-            {/* Routes를 통해 내부에 배치할 URI 경로 설정들을 준비*/}
             <Routes>
-                {/* Route를 통해 실제 어떤 URI 로 이동할때 어떤 컴포넌트를 사용할지 결정한다*/}
                 <Route path="/" element={<Navigate to="login" replace/>}/>
                 <Route path="/login" element={<KakaoAuthenticationPage/>}/>
                 <Route path="/callback" element={<KakaoAuthenticationCallback />} />

@@ -1,14 +1,12 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
-  "version": "0.0.0",
+  "version": "independent",
   "packages": [
     "html-container",
-    "html-css-test-app",
-    "javascript-test-app",
-    "kakao-authentication",
     "navigation-bar-app",
-    "react-test-app",
-    "practice-app"
-  ],
-  "hoist": true
+    "practice-app",
+    "dice-game-app",
+    "vue-board-app",
+    "authentication-app"
+  ]
 }

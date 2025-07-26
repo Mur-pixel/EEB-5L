@@ -35,15 +35,29 @@ public class KakaoAuthenticationController {
         return kakaoAuthenticationService.getLoginLink();
     }
 
+    //실제로 Authentication(인증)은 Frontend에서 .env파트가 담당하고 있음
+    // 해당 파트에서 각 벤더(회사) 별 authroize를 요청하게 됩니다
+    //authorize가 요청되면 각 벤더별 로그인 창이 나타남
+    //여기서 여러분들이 id,password를 일벽하고 로그인 하면
+    //그 다음으로 redirection이 발생하게 됩니다
+    //그런데 .env에 작성해 놓은 것을 보면
+    //redirection이 현재 Backend /xxx-authentication/login으로 요청이 날아갑니다
+    //그래서 실제 Frontene에서 .env 파트로 요청 보내는 코드가 동작한 다음 로그인하면 아래 파트가 실행됩니다
+
+
     @GetMapping("/login")
     @Transactional
     public void requestAccessToken(@RequestParam("code") String code, HttpServletResponse response) throws IOException {
         log.info("requestAccessToken(): code {}", code);
 
         try {
+            //step 2 토큰받기 1번 2번
+            // 사실 사용자 정보 수집이 필요하지 않으면 두줄로 끝나도 무방
             Map<String, Object> tokenResponse = kakaoAuthenticationService.requestAccessToken(code);
             String accessToken = (String) tokenResponse.get("access_token");
 
+            //별개로 사용자정보를확인하는 작업이 진행됨
+            //사용자 정보를 수집하기 위한 목적으로 사욛되기에 서비스 구성에 따라 사용하지 않을수도 있음
             Map<String, Object> userInfo = kakaoAuthenticationService.requestUserInfo(accessToken);
             log.info("userInfo: {}", userInfo);
 
@@ -51,9 +65,11 @@ public class KakaoAuthenticationController {
             String email = (String) ((Map) userInfo.get("kakao_account")).get("email");
             log.info("email: {}", email);
 
+            //로그인 타입과 이메일의 일치 여부를 확인해서 가입한 사용자인지 여부를 판단
             Optional<AccountProfile> optionalProfile = accountProfileService.loadProfileByEmail(email);
             Account account = null;
 
+            //기존 사용자
             if (optionalProfile.isPresent()) {
                 account = optionalProfile.get().getAccount();
                 log.info("account (existing): {}", account);

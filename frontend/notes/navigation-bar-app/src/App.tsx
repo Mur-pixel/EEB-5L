@@ -1,26 +1,66 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
-import {Link} from "react-router-dom";
+import {Link, useNavigate, useLocation} from "react-router-dom";
 
 import HomeIcon from "@mui/icons-material/Home";
-import CodeIcon from "@mui/icons-material/Code";
-import JavascriptIcon from "@mui/icons-material/Javascript";
 import ForumIcon from "@mui/icons-material/Forum";
-import SportsGymnasticsIcon from '@mui/icons-material/SportsGymnastics';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
+import CasinoOutlined from '@mui/icons-material/CasinoOutlined'
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import axiosInstance from "./utility/AxiosInst.ts";
 
 const App: React.FC = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        const token = localStorage.getItem("userToken");
+
+        if (!token) {
+            setIsLoggedIn(false);
+            return;
+        }
+
+        axiosInstance.springAxiosInst.get("/authentication/validate", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+            .then(() => {
+                setIsLoggedIn(true);
+            })
+            .catch(() => {
+                localStorage.removeItem("userToken");
+                setIsLoggedIn(false);
+            });
+    }, [location]);
 
     const handleAuthClick = () => {
-        setIsLoggedIn(isLoggedIn => !isLoggedIn);
+        if (isLoggedIn) {
+            localStorage.removeItem("userToken");
+            setIsLoggedIn(false);
+            navigate("/");
+        } else {
+            navigate("/authentication");
+        }
     };
 
     return (
         <AppBar position="static">
             <Toolbar>
-                <Typography variant="h6" sx={{ flexGrow: 1 }}>
+                <Typography
+                    variant="h6"
+                    component={Link}
+                    to="/"
+                    sx={{
+                        flexGrow: 1,
+                        textDecoration: "none",
+                        color: "inherit",
+                        fontWeight: 'bold',
+                    }}
+                >
                     EDDI
                 </Typography>
                 <Button
@@ -32,30 +72,6 @@ const App: React.FC = () => {
                 <Button
                     color="inherit"
                     component={Link}
-                    to="/html-css-test"
-                    startIcon={<CodeIcon />}
-                >
-                    HTML
-                </Button>
-                <Button
-                    color="inherit"
-                    component={Link}
-                    to="/js-test"
-                    startIcon={<JavascriptIcon />}
-                >
-                    JS
-                </Button>
-                {/*<Button*/}
-                {/*    color="inherit"*/}
-                {/*    component={Link}*/}
-                {/*    to="/board/list"*/}
-                {/*    startIcon={<ForumIcon />}*/}
-                {/*>*/}
-                {/*    R게시판*/}
-                {/*</Button>*/}
-                <Button
-                    color="inherit"
-                    component={Link}
                     to="/vue-board/list"
                     startIcon={<ForumIcon />}
                 >
@@ -64,12 +80,19 @@ const App: React.FC = () => {
                 <Button
                     color="inherit"
                     component={Link}
-                    to="/react-test"
-                    startIcon={<SportsGymnasticsIcon />}
+                    to="/game-chip/list"
+                    startIcon={<CasinoOutlined />}  // 아이콘은 예시로 사용됨
                 >
-                    React
+                    게임칩
                 </Button>
-                {/* 로그인 / 로그아웃 버튼 */}
+                <Button
+                    color="inherit"
+                    component={Link}
+                    to="/cart/list"
+                    startIcon={<ShoppingCartCheckoutIcon />}
+                >
+                    카트
+                </Button>
                 <Button
                     color="inherit"
                     onClick={handleAuthClick}

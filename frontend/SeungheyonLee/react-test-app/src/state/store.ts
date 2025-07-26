@@ -1,4 +1,5 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit'
+// src/store.ts
+import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 const counterSlice = createSlice({
     name: 'counter',
@@ -7,15 +8,15 @@ const counterSlice = createSlice({
         increment: (state) => { state.value += 1 },
         decrement: (state) => { state.value -= 1 },
     },
-})
+});
 
-export const { increment, decrement } = counterSlice.actions
+export const { increment, decrement } = counterSlice.actions;
 
 export const store = configureStore({
     reducer: {
         counter: counterSlice.reducer,
     },
-})
+});
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

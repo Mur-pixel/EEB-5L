@@ -3,14 +3,13 @@
   "version": "0.0.0",
   "packages": [
     "html-container",
-    "html-css-test-app",
-    "javascript-test-app",
     "kakao-authentication",
     "navigation-bar-app",
-    "react-test-app",
     "practice-app",
     "google-authentication",
-    "recoil-board-app"
+    "dice-game-app",
+    "vue-board-app",
+    "github-authentication"
   ],
   "hoist": true
 }

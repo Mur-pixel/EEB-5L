@@ -84,6 +84,7 @@ export default defineConfig({
     new ModuleFederationPlugin(mfConfig),
     new DefinePlugin({
       "process.env.REACT_APP_KAKAO_AUTHENTICATION_URL": JSON.stringify(process.env.REACT_APP_KAKAO_AUTHENTICATION_URL),
+      "process.env.DATA_ORIGIN": JSON.stringify(process.env.DATA_ORIGIN),
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
     }),
     isDev ? new RefreshPlugin() : null,

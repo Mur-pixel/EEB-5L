@@ -7,6 +7,4 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AccessTokenRequestForm {
     String code;
-
-
 }

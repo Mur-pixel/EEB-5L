@@ -1,0 +1,29 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+
+  cloud:
+    config:
+      server:
+        git:
+          # uri: file:///home/oem/redo/EEB-5L/msa/notes/collections/config-repo
+          # 이 부분은 실제 여러분들의 config-repo가 배치될 공간이어야 합니다.
+          uri: file:///C:/proj/EEB-5L/msa/notes/collections/config-repo
+          default-label: main
+
+          # http://localhost:8888/application/default/main
+          # 만약 안나온다면 git 설정을 해줘야 나오게 됩니다.
+          
+          # 위의 설정이 존재하는 장소는 config-repo 이므로
+          # config-repo로 이동합니다 <- 이번엔 명령어로 해야함
+          # config-server가 아니라 config-repo임을 주의하셔야 합니다
+          # config-repo 내부에서 아래 명령을 입력하면 됩니다.
+          # 다른 위치에서 작업하면 현재 작업한 내역들이 싹 다 사라질 수도 있으니 주의가 필요합니다.
+
+          # git init
+          # git add .
+          # git commit -m "init config repo"
+

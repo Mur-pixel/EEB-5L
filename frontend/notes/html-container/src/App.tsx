@@ -8,16 +8,20 @@ import mitt from 'mitt';
 // npm install mitt
 
 const NavigationBarApp = lazy(() => import("navigationBarApp/App"));
-const HtmlCssTestApp = lazy(() => import("htmlCssTestApp/App"));
-const JavascriptTestApp = lazy(() => import("javascriptTestApp/App"));
-const KakaoAuthenticationApp = lazy(() => import("kakaoAuthenticationApp/App"));
-const GoogleAuthenticationApp = lazy(() => import("googleAuthenticationApp/App"));
-const ReactTestApp = lazy(() => import("reactTestApp/App"));
-const RecoilBoardApp = lazy(() => import("recoilBoardApp/App"))
+// const HtmlCssTestApp = lazy(() => import("htmlCssTestApp/App"));
+// const JavascriptTestApp = lazy(() => import("javascriptTestApp/App"));
+// const KakaoAuthenticationApp = lazy(() => import("kakaoAuthenticationApp/App"));
+// const GoogleAuthenticationApp = lazy(() => import("googleAuthenticationApp/App"));
+// const ReactTestApp = lazy(() => import("reactTestApp/App"));
+// const RecoilBoardApp = lazy(() => import("recoilBoardApp/App"))
+const AuthenticationApp = lazy(() => import("authenticationApp/App"));
+const CartApp = lazy(() => import("cartApp/App"));
 
 // import VuetifyTailwindBoardAppWrapper from "./VuetifyTailwindBoardAppWrapper";
 import VueBoardAppWrapper from "./VueBoardWrapper.tsx";
 import DiceGameAppWrapper from "./DiceGameAppWrapper.tsx";
+import VTestWrapper from "./VTestWrapper.tsx";
+import VueGameChipWrapper from "./VueGameChipWrapper.tsx";
 
 const eventBus = mitt();
 
@@ -37,15 +41,19 @@ const App = () => {
 
                 <Routes>
                     <Route path="/" element={<div>Home Page</div>} />
-                    <Route path="/html-css-test" element={<HtmlCssTestApp />} />
-                    <Route path="/js-test" element={<JavascriptTestApp />} />
-                    <Route path="/kakao-authentication/*" element={<KakaoAuthenticationApp />} />
+                    {/*<Route path="/html-css-test" element={<HtmlCssTestApp />} />*/}
+                    {/*<Route path="/js-test" element={<JavascriptTestApp />} />*/}
+                    {/*<Route path="/kakao-authentication/*" element={<KakaoAuthenticationApp />} />*/}
                     {/*<Route path="/board/*" element={<VuetifyTailwindBoardAppWrapper />} />*/}
-                    <Route path="/react-test" element={<ReactTestApp />} />
-                    <Route path="/google-authentication/*" element={<GoogleAuthenticationApp />} />
-                    <Route path="/recoil-board/*" element={<RecoilBoardApp />} />
+                    {/*<Route path="/react-test" element={<ReactTestApp />} />*/}
+                    {/*<Route path="/google-authentication/*" element={<GoogleAuthenticationApp />} />*/}
+                    {/*<Route path="/recoil-board/*" element={<RecoilBoardApp />} />*/}
                     <Route path="/vue-board/*" element={<VueBoardAppWrapper eventBus={eventBus}/>} />
                     <Route path="/dice-game" element={<DiceGameAppWrapper />} />
+                    <Route path="/authentication/*" element={<AuthenticationApp />} />
+                    {/*<Route path="/vtest/*" element={<VTestWrapper eventBus={eventBus}/>} />*/}
+                    <Route path="/game-chip/*" element={<VueGameChipWrapper eventBus={eventBus}/>} />
+                    <Route path="/cart/*" element={<CartApp />} />
                 </Routes>
             </Suspense>
         </BrowserRouter>

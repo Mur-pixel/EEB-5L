@@ -22,7 +22,7 @@ export default defineConfig({
   },
 
   devServer: {
-    port: 80,//http,브라우저가 사용포트 = 80
+    port: 80,
     historyApiFallback: true,
     watchFiles: [path.resolve(__dirname, "src")],
   },
@@ -40,8 +40,8 @@ export default defineConfig({
   module: {
     rules: [
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        type: "asset/resource",
+        test: /\.svg$/,
+        type: "asset",
       },
       {
         test: /\.css$/,

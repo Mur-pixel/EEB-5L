@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface AccountProfileService {
     AccountProfile createAccountProfile(Account account, String nickname, String email);
     Optional<AccountProfile> loadProfileByEmail(String email);
+    Optional<AccountProfile> loadProfileByAccountId(Long accountId);
+    void markTermsAccepted(Long accountId, boolean agreed);
 }

@@ -1,0 +1,19 @@
+package com.example.monoproj.sample_board.controller.request_form;
+
+import com.example.monoproj.sample_board.service.request.CreateSampleBoardRequest;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+
+@Getter
+@ToString
+@RequiredArgsConstructor
+public class CreateSampleBoardRequestForm {
+
+    final private String title;
+    private final String content;
+
+    public CreateSampleBoardRequestForm(Long accountId) {
+        return new CreateSampleBoardRequest(title, accountId, content);
+    }
+}

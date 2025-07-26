@@ -29,15 +29,31 @@ services:
     build:
       context: ./kakao-authentication
     ports:
-      - "3004:3004"
+      - "3003:3003"
     networks:
       - app-network
+
+#  vuetify-board-app:
+#    build:
+#      context: ./vuetify-tailwind-board-app
+#    ports:
+#      - "3004:3004"
+#    networks:
+#      - app-network
 
   navigation-bar:
     build:
       context: ./navigation-bar-app
     ports:
       - "3005:3005"
+    networks:
+      - app-network
+
+  react-test:
+    build:
+      context: ./react-test-app
+    ports:
+      - "3006:3006"
     networks:
       - app-network
 

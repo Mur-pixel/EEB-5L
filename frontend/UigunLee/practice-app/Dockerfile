@@ -6,5 +6,5 @@ RUN npm install && npm run build
 FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
-EXPOSE 3006
+EXPOSE 3007
 CMD ["nginx", "-g", "daemon off;"]

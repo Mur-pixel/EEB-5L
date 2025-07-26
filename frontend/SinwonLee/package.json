@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "notes",
   "private": true,
   "workspaces": [
     "html-container",
@@ -7,19 +7,18 @@
     "javascript-test-app",
     "kakao-authentication",
     "navigation-bar-app",
-    "react-test-app"
+    "vuetify-tailwind-board-app",
+    "react-test-app",
+    "google-authentication",
+    "recoil-board-app",
+    "vue-board-app",
+    "dice-game-app"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap",
     "start": "lerna run start --parallel"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
     "lerna": "^8.2.1"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^7.1.1"
   }
 }

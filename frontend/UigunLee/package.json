@@ -3,19 +3,24 @@
   "private": true,
   "workspaces": [
     "html-container",
-    "html-css-test-app",
-    "javascript-test-app",
-    "kakao-authentication",
     "navigation-bar-app",
-    "react-test-app",
-    "practice-app"
+    "practice-app",
+    "dice-game-app",
+    "vue-board-app",
+    "authentication-app"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap",
     "start": "lerna run start --parallel"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "lerna": "^8.2.1"
+    "lerna": "^8.2.1",
+    "zip-a-folder": "^3.1.9",
+    "zip-cli": "^0.0.0"
+  },
+  "dependencies": {
+    "cannon-es": "^0.20.0",
+    "mitt": "^3.0.1",
+    "three": "^0.177.0"
   }
 }

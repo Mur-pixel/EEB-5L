@@ -6,7 +6,7 @@ import App from "./App";
 const root = ReactDOM.createRoot(document.getElementById("app")!);
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
+        <BrowserRouter basename="/kakao-authentication">
             <App />
         </BrowserRouter>
     </React.StrictMode>

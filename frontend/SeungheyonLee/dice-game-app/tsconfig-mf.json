@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist/@mf-types",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "types": ["svelte"],        // ⬅️ 이거 추가
+    "skipLibCheck": true,
+    "baseUrl": "."
+  },
+  "include": ["src", "global.d.ts"]  // 필요시 global.d.ts 경로 조정
+}

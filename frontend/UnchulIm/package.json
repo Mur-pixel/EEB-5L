@@ -3,14 +3,13 @@
   "private": true,
   "workspaces": [
     "html-container",
-    "html-css-test-app",
-    "javascript-test-app",
     "kakao-authentication",
     "navigation-bar-app",
-    "react-test-app",
     "practice_app",
     "google-authentication",
-    "recoil-board-app"
+    "dice-game-app",
+    "vue-board-app",
+    "github-authentication"
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
@@ -18,7 +17,9 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "lerna": "^8.2.1"
+    "lerna": "^8.2.1",
+    "zip-a-folder": "^3.1.9",
+    "zip-cli": "^0.0.0"
   },
   "dependencies": {
     "@module-federation/dts-plugin": "^0.15.0"

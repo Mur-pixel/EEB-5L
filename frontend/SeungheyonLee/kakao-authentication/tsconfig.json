@@ -16,7 +16,7 @@
       "*": ["./@mf-types/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "src/types"],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"

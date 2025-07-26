@@ -42,7 +42,7 @@ public class GameControllerTest {
 
         // JWT를 파싱하여 accountId를 추출하는 필터가 있다면,
         // 여기서는 controller 단위만 검증하므로 Mock 처리 가정
-        when(redisCacheService.getValueByKey(token)).thenReturn(expectedAccountId);
+        when(redisCacheService.getValueByKey(token, Long.class)).thenReturn(expectedAccountId);
         when(gameService.start(expectedAccountId)).thenReturn(expectedGameId);
 
         mockMvc.perform(get("/game/start")

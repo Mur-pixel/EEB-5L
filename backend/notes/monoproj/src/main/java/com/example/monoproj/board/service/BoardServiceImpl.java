@@ -101,4 +101,17 @@ public class BoardServiceImpl implements BoardService {
 
         return UpdateBoardResponse.from(board);
     }
+
+    @Override
+    public void delete(Long boardId, Long accountId) {
+        Board board = boardRepository.findByIdWithWriter(boardId)
+                .orElseThrow(() -> new RuntimeException("게시글이 존재하지 않습니다."));
+
+        if (!board.getWriter().getAccount().getId().equals(accountId)) {
+            throw new RuntimeException("삭제 권한이 없습니다.");
+        }
+
+        boardRepository.delete(board);
+    }
+
 }

@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: Gateway   # ?????? ??? ?Gateway?? ??.
+
+  cloud:
+    gateway:
+      routes:      # ?? ????? ??? ?? ??.
+        - id: simple-service               # ??? ???.
+          uri: lb://SIMPLE                  # Ribbon ?????? ?? SIMPLE ???? ?? ??.
+          predicates:
+            - Path=/api/simple/**          # /api/simple/** ??? ??? ??.
+          filters:
+            - StripPrefix=2                # ?? 2? ?? ????(/api/simple) ?? ? ??.
+
+        - id: book-service                 # ? ?? ??? ??? ???.
+          uri: lb://BOOK                    # BOOK ???? ?? ??.
+          predicates:
+            - Path=/api/book/**            # /api/book/** ??? ??? ??.
+          filters:
+            - StripPrefix=1                # ?? 1? ?? ????(/api) ?? ? ??.
+
+        # account-service 라우트 설정 (Gateway가 요청을 ACCOUNT 서비스로 전달)
+        - id: account-service  # 이 라우트 설정의 고유 ID. 로그나 디버깅할 때 식별 용도로 사용됨
+          uri: lb://ACCOUNT    # lb는 Load Balancer의 약자이며, ACCOUNT는 Eureka에 등록된 서비스 이름
+          # 따라서 요청은 Eureka에 등록된 ACCOUNT 서비스 인스턴스로 전달됨
+          predicates:
+            - Path=/api/account/**  # 이 라우트는 클라이언트 요청 경로가 /api/account/로 시작할 때만 적용됨
+            # 예: /api/account/register, /api/account/login 등
+          filters:
+            - StripPrefix=1         # 클라이언트 요청 URL 경로의 앞 3개의 path segment를 제거
+              # 예: /api/account/register → /register
+              # ACCOUNT 서비스는 /register만 처리하면 되도록 경로를 정리함
+
+
+      discovery:
+        locator:
+          enabled: true                    # Eureka?? ??? ?? ???? ?? ?? ??? ???.
+          lower-case-service-id: true      # ??? ??? ???? ???? ??.
+
+  logging:
+    level:
+      org.springframework.cloud.gateway: DEBUG  # Gateway ?? ?? ??? DEBUG? ??.
+
+server:
+  port: 8080        # Gateway? ??? HTTP ?? ??.
+
+eureka:
+  client:
+    register-with-eureka: true   # Gateway? Eureka? ?????? ??.
+    fetch-registry:    true      # Eureka?? ??? ????? ?? ????? ????.
+    service-url:
+      defaultZone: http://localhost:9876/eureka  # Eureka ??? ????? URL.

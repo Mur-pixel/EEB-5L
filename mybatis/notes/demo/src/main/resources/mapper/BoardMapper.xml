@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.BoardMapper">
+
+    <select id="getBoardById" resultType="com.example.demo.domain.Board">
+        SELECT * FROM test_board WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultType="com.example.demo.domain.Board">
+        SELECT * FROM test_board
+    </select>
+
+    <insert id="insertBoard" parameterType="com.example.demo.domain.Board" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO test_board (title, content) VALUES (#{title}, #{content})
+    </insert>
+
+</mapper>
+

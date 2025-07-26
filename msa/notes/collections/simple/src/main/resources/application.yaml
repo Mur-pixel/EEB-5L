@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: simple
+
+server:
+  port: 12345
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9876/eureka
+
+feign:
+  hystrix:
+    enabled: false
+  httpclient:
+    enabled: true
+  jackson:
+    enabled: true
+
+logging:
+  level:
+    com.example.simple.client: DEBUG
+    feign: DEBUG
